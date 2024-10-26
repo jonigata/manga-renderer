@@ -9,14 +9,13 @@ NPM package for manga-renderer functionality, extracted from FramePlanner.
    your-workspace/
    ├── FramePlanner/
    │   └── src/
-   │       └── manga-renderer/
-   └── manga-renderer-npm/    <- you are here
+   │       └── /lib/layeredCanvas
+   └── manga-renderer/    <- you are here
    ```
 
 2. Run the setup script:
    ```bash
-   chmod +x setup.sh
-   ./setup.sh
+   sh setup.sh
    ```
 
    This will:
@@ -33,8 +32,8 @@ NPM package for manga-renderer functionality, extracted from FramePlanner.
 
 ```
 manga-renderer-npm/
-├── src/
-│   └── manga-renderer/ -> ../../FramePlanner/src/manga-renderer/  (symlink)
+├── src/lib/
+│   └── layeredCanvas/ -> ../../../FramePlanner/src/lib/layeredCanvas/  (symlink)
 ├── setup.sh
 └── package.json
 ```
