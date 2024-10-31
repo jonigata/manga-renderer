@@ -1,12 +1,44 @@
 {
   "name": "manga-renderer",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "A renderer for package files output from FramePlanner",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "scripts": {
+    "clean": "rimraf dist",
+    "build:main": "tsc --build tsconfig.json",
+    "build": "npm run clean && npm run build:main",
+    "prepublishOnly": "npm run build",
+    "example": "npm run build:examples && node dist/examples/sample.js",
+    "vitest": "vitest"
+  },
+  "keywords": ["manga", "renderer", "graphics", "illustration"],
+  "author": "Naoyuki Hirayama",
+  "license": "MIT",
+  "dependencies": {
+    "@types/seedrandom": "^3.0.8",
+    "cbor-x": "^1.6.0",
+    "color-parse": "^2.0.2",
+    "fastsdf": "^0.0.11",
+    "paper": "^0.12.18",
+    "paperjs-offset": "^1.0.8",
+    "perfect-freehand": "^1.2.2",
+    "roughjs": "^4.6.6",
+    "seedrandom": "^3.0.5",
+    "typai": "^0.0.15",
+    "typescript": "^5.6.3",
+    "ulid": "^2.3.0",
+    "vitest": "^2.1.3"
+  }
 }
