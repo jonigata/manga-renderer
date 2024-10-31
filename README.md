@@ -75,45 +75,44 @@ Loads a Google Font for use with canvas.
 
 MIT
 
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
 ## Development Setup
 
-1. Clone this repository next to your FramePlanner repository:
-   ```
-   your-workspace/
-   ├── FramePlanner/
-   │   └── src/
-   │       └── /lib/layeredCanvas
-   └── manga-renderer/    <- you are here
-   ```
+Before building the package, you need to:
 
-2. Run the setup script:
-   ```bash
-   sh setup.sh
-   ```
+1. Clone the FramePlanner2 repository alongside the manga-renderer directory:
+```bash
+# Your workspace directory
+├── manga-renderer/
+└── FramePlanner2/  # clone this repository
+```
 
-   This will:
-   - Create necessary directories
-   - Set up symbolic links to the FramePlanner source
-   - Configure .gitignore
+2. Clone FramePlanner2:
+```bash
+git clone https://github.com/jonigata/FramePlanner2.git
+```
 
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
+3. Run the setup script:
+```bash
+cd manga-renderer
+sh setup.sh
+```
+
+This setup process is required because manga-renderer depends on some modules from the FramePlanner2 project.
 
 ## Project Structure
 
 ```
 manga-renderer-npm/
 ├── src/
-│   └── /lib/layeredCanvas/ -> ../../../FramePlanner/src/lib/layeredCanvas/  (symlink)
+│   ├── /lib/layeredCanvas/ -> ../../../FramePlanner/src/lib/layeredCanvas/  (symlink)
+│   └── /lib/book/ -> ../../../FramePlanner/src/lib/book/  (symlink)
 ├── setup.sh
 └── package.json
 ```
 
 Note: The `src/manga-renderer` directory is a symbolic link to the source code in the FramePlanner repository. Changes made to the files in either location will be reflected in both places.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
 

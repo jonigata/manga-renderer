@@ -21,13 +21,22 @@
     "build": "npm run clean && npm run build:main",
     "prepublishOnly": "npm run build",
     "example": "npm run build:examples && node dist/examples/sample.js",
-    "vitest": "vitest"
+    "test": "vitest"
   },
   "keywords": ["manga", "renderer", "graphics", "illustration"],
   "author": "Naoyuki Hirayama",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonigata/manga-renderer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joniata/manga-renderer/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "dependencies": {
-    "@types/seedrandom": "^3.0.8",
     "cbor-x": "^1.6.0",
     "color-parse": "^2.0.2",
     "fastsdf": "^0.0.11",
@@ -37,8 +46,12 @@
     "roughjs": "^4.6.6",
     "seedrandom": "^3.0.5",
     "typai": "^0.0.15",
+    "ulid": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/seedrandom": "^3.0.8",
     "typescript": "^5.6.3",
-    "ulid": "^2.3.0",
-    "vitest": "^2.1.3"
+    "vitest": "^2.1.3",
+    "rimraf": "^5.0.0"
   }
 }
