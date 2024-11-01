@@ -13,6 +13,19 @@ export class Renderer {
   cleanup() {
     this.layeredCanvas.cleanup();
   }
+
+  focusToPage(index: number, pageScale: number = 1) {
+    const viewport = this.layeredCanvas.viewport;
+    const [cw, ch] = viewport.getCanvasSize();
+    const paper = this.arrayLayer.array.papers[index];
+    const [pw, ph] = paper.paper.size;
+    const scale = Math.min(cw / pw, ch / ph) * pageScale;
+    const p = paper.center;
+    viewport.scale = scale;
+    viewport.translate = [-p[0] * scale, -p[1] * scale];
+    viewport.dirty = true;
+    this.layeredCanvas.redraw();
+  }  
 }
 
 export function buildRenderer(canvas: HTMLCanvasElement, book: Book): Renderer {
