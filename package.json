@@ -1,6 +1,6 @@
 {
   "name": "manga-renderer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A renderer for package files output from FramePlanner",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

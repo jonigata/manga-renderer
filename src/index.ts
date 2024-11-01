@@ -28,7 +28,7 @@ export class Renderer {
   }  
 }
 
-export function buildRenderer(canvas: HTMLCanvasElement, book: Book): Renderer {
+export function buildRenderer(canvas: HTMLCanvasElement, book: Book, startIndex: number = 0, length: number = -1): Renderer {
   const viewport = new Viewport(canvas, () => {});
   const focusKeeper = new FocusKeeper();
   const layeredCanvas = new LayeredCanvas(viewport, true);
@@ -38,13 +38,13 @@ export function buildRenderer(canvas: HTMLCanvasElement, book: Book): Renderer {
 
   let papers: Paper[] = [];
   // pages.push(pages[0]);
-  let pageNumber = 0;
-  for (const page of book.pages) {
+  const endIndex = length < 0 ? book.pages.length : startIndex + length;
+  for (let i = startIndex; i < endIndex; i++) {
+    const page = book.pages[i];
     for (const bubble of page.bubbles) {
-      bubble.pageNumber = pageNumber;
+      bubble.pageNumber = i;
     }
     papers.push(buildPaper(page));
-    pageNumber++;
   }
   const direction = getDirectionFromReadingDirection(book.direction);
   const {fold, gapX, gapY} = getFoldAndGapFromWrapMode(book.wrapMode);
