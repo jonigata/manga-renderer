@@ -7,6 +7,7 @@ import { FocusKeeper } from './lib/layeredCanvas/tools/focusKeeper';
 
 export { readEnvelope } from './lib/book/envelope';
 export { initPaperJs } from './lib/layeredCanvas/tools/draw/bubbleGraphic';
+export type { Book, Page, WrapMode, ReadingDirection };
 
 export class Renderer {
   constructor(private arrayLayer: ArrayLayer, private layeredCanvas: LayeredCanvas, private focusKeeper: FocusKeeper, private marks: boolean[]) {}
