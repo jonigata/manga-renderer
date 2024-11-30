@@ -26,7 +26,11 @@ export class Renderer {
     viewport.translate = [-p[0] * scale, -p[1] * scale];
     viewport.dirty = true;
     this.layeredCanvas.redraw();
-  }  
+  }
+
+  getScale() {
+    return this.layeredCanvas.viewport.scale;
+  }
 }
 
 export function buildRenderer(canvas: HTMLCanvasElement, book: Book, startIndex: number = 0, length: number = -1): Renderer {
@@ -72,7 +76,7 @@ function buildPaper(page: Page) {
   const paper = new Paper(page.paperSize, false);
 
   // renderer
-  const paperRendererLayer = new PaperRendererLayer();
+  const paperRendererLayer = new PaperRendererLayer(true);
   paperRendererLayer.setFrameTree(page.frameTree);
   paperRendererLayer.setBubbles(page.bubbles);
   paper.addLayer(paperRendererLayer);
