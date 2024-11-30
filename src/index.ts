@@ -10,7 +10,7 @@ export { initPaperJs } from './lib/layeredCanvas/tools/draw/bubbleGraphic';
 export type { Book, Page, WrapMode, ReadingDirection };
 
 export class Renderer {
-  constructor(private arrayLayer: ArrayLayer, private layeredCanvas: LayeredCanvas, private focusKeeper: FocusKeeper, private marks: boolean[]) {}
+  constructor(public arrayLayer: ArrayLayer, public layeredCanvas: LayeredCanvas, public focusKeeper: FocusKeeper, public marks: boolean[]) {}
   cleanup() {
     this.layeredCanvas.cleanup();
   }
