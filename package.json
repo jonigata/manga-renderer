@@ -1,23 +1,23 @@
 {
   "name": "manga-renderer",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "A renderer for package files output from FramePlanner",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.js",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js",
       "types": "./dist/index.d.ts"
     }
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build:main": "tsc --build tsconfig.json",
+    "build:main": "vite build",
     "build": "npm run clean && npm run build:main",
     "prepublishOnly": "npm run build",
     "example": "npm run build:examples && node dist/examples/sample.js",
@@ -52,13 +52,17 @@
     "perfect-freehand": "^1.2.2",
     "roughjs": "^4.6.6",
     "seedrandom": "^3.0.5",
+    "sha1-uint8array": "^0.10.7",
     "typai": "^0.0.15",
     "ulid": "^2.3.0"
   },
   "devDependencies": {
+    "@types/node": "^22.10.2",
     "@types/seedrandom": "^3.0.8",
     "rimraf": "^5.0.0",
     "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vite-plugin-dts": "^4.4.0",
     "vitest": "^2.1.3"
   }
 }
