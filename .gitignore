@@ -1,2 +1,6 @@
 src/lib/layeredCanvas
 src/lib/book
+
+dist
+node_modules
+stats.html
