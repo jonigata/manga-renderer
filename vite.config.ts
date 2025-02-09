@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import visualizer from 'rollup-plugin-visualizer';
 import dts from 'vite-plugin-dts';
 
 export default defineConfig({
@@ -9,7 +10,27 @@ export default defineConfig({
       fileName: (format) => `index.${format}.js`
     },
     rollupOptions: {
-      external: []
+      external: [
+        "@types/color-rgba",
+        "cbor-x",
+        "color-parse",
+        "color-rgba",
+        "fastsdf",
+        "paper",
+        "paperjs-offset",
+        "perfect-freehand",
+        "roughjs",
+        "seedrandom",
+        "sha1-uint8array",
+        "typai",
+        "ulid",
+      ],
+      plugins: [
+        visualizer({
+          filename: 'stats.html',
+          template: 'treemap'
+        })
+      ]
     }
   },
   plugins: [dts()],
