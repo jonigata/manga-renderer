@@ -21,7 +21,8 @@
     "build": "npm run clean && npm run build:main",
     "prepublishOnly": "npm run build",
     "example": "npm run build:examples && node dist/examples/sample.js",
-    "test": "vitest"
+    "test": "vitest",
+    "watch": "vite build --watch"
   },
   "keywords": [
     "manga",

@@ -30,7 +30,10 @@ export default defineConfig({
           filename: 'stats.html',
           template: 'treemap'
         })
-      ]
+      ],
+      watch: {
+        include: 'src/**'
+      }
     }
   },
   plugins: [dts()],

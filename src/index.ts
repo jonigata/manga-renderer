@@ -21,7 +21,7 @@ export class Renderer {
     const [cw, ch] = viewport.getCanvasSize();
     const paper = this.arrayLayer.array.papers[index];
     const [pw, ph] = paper.paper.size;
-    const scale = Math.min(cw / pw, ch / ph) * pageScale;
+    const scale = Math.min(Math.max(1, cw) / pw, Math.max(1, ch) / ph) * pageScale;
     const p = paper.center;
     viewport.scale = scale;
     viewport.translate = [-p[0] * scale, -p[1] * scale];
@@ -35,6 +35,7 @@ export class Renderer {
 }
 
 export function buildRenderer(canvas: HTMLCanvasElement, book: Book, startIndex: number = 0, length: number = -1): Renderer {
+  console.log("Building renderer...");
   const viewport = new Viewport(canvas, () => {});
   const focusKeeper = new FocusKeeper();
   const layeredCanvas = new LayeredCanvas(viewport, true);
@@ -65,6 +66,8 @@ export function buildRenderer(canvas: HTMLCanvasElement, book: Book, startIndex:
     () => {},
     () => {});
   layeredCanvas.rootPaper.addLayer(arrayLayer);
+
+  layeredCanvas.mode = 'viewer';
 
   return new Renderer(arrayLayer, layeredCanvas, focusKeeper, marks);
 }
