@@ -1,6 +1,7 @@
 import { LayeredCanvas, Paper, Viewport } from './lib/layeredCanvas/system/layeredCanvas';
 import { FloorLayer } from './lib/layeredCanvas/layers/floorLayer';
 import { ArrayLayer } from './lib/layeredCanvas/layers/arrayLayer';
+import { ViewerLayer } from './lib/layeredCanvas/layers/viewerLayer';
 import type { Book, Page, WrapMode, ReadingDirection } from './lib/book/book';
 import { PaperRendererLayer } from './lib/layeredCanvas/layers/paperRendererLayer';
 import { FocusKeeper } from './lib/layeredCanvas/tools/focusKeeper';
@@ -49,7 +50,7 @@ export function buildRenderer(canvas: HTMLCanvasElement, book: Book, startIndex:
     for (const bubble of page.bubbles) {
       bubble.pageNumber = i;
     }
-    papers.push(buildPaper(page));
+    papers.push(buildPaper(page, focusKeeper));
   }
   const direction = getDirectionFromReadingDirection(book.direction);
   const {fold, gapX, gapY} = getFoldAndGapFromWrapMode(book.wrapMode);
@@ -72,7 +73,7 @@ export function destroyRenderer(renderer: Renderer) {
   renderer.cleanup();
 }
 
-function buildPaper(page: Page) {
+function buildPaper(page: Page, focusKeeper: FocusKeeper): Paper {
   const paper = new Paper(page.paperSize, false);
 
   // renderer
@@ -80,6 +81,14 @@ function buildPaper(page: Page) {
   paperRendererLayer.setFrameTree(page.frameTree);
   paperRendererLayer.setBubbles(page.bubbles);
   paper.addLayer(paperRendererLayer);
+
+  // viewerLayer
+  const viewerLayer = new ViewerLayer(
+    page.frameTree, 
+    (layout)=>{
+      console.log(layout);
+    }, focusKeeper)
+  paper.addLayer(viewerLayer);
 
   // frame
   page.frameTree.bgColor = page.paperColor;
