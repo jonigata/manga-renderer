@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import visualizer from 'rollup-plugin-visualizer';
 import dts from 'vite-plugin-dts';
+import * as path from 'path'
 
 export default defineConfig({
   build: {
@@ -38,6 +39,9 @@ export default defineConfig({
   },
   plugins: [dts()],
   resolve: {
-    extensions: ['.ts', '.js']
-  }
+    extensions: ['.ts', '.js'],
+    alias: {
+      $bookTypes: path.resolve(__dirname, 'src/lib/book/types'),
+    }    
+  },
 });
