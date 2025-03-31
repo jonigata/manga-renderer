@@ -1,6 +1,6 @@
 {
   "name": "manga-renderer",
-  "version": "1.0.17",
+  "version": "1.0.19",
   "description": "A renderer for package files output from FramePlanner",
   "files": [
     "dist"
@@ -58,6 +58,7 @@
     "ulid": "^2.3.0"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.3",
     "@types/node": "^22.10.2",
     "@types/seedrandom": "^3.0.8",
     "rimraf": "^5.0.0",

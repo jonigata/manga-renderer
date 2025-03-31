@@ -88,7 +88,7 @@ Before building the package, you need to:
 
 2. Clone FramePlanner2:
 ```bash
-git clone https://github.com/jonigata/FramePlanner2.git
+git clone https://github.com/jonigata/FramePlanner2.git FramePlanner
 ```
 
 3. Run the setup script:
