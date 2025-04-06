@@ -5,6 +5,8 @@ import { ViewerLayer } from './lib/layeredCanvas/layers/viewerLayer';
 import type { Book, Page, WrapMode, ReadingDirection } from './lib/book/book';
 import { PaperRendererLayer } from './lib/layeredCanvas/layers/paperRendererLayer';
 import { FocusKeeper } from './lib/layeredCanvas/tools/focusKeeper';
+import { Layout } from './lib/layeredCanvas/dataModels/frameTree';
+import { Bubble } from './lib/layeredCanvas/dataModels/bubble';
 
 export { readEnvelope } from './lib/book/envelope';
 export { initPaperJs } from './lib/layeredCanvas/tools/draw/bubbleGraphic';
@@ -88,9 +90,11 @@ function buildPaper(page: Page, focusKeeper: FocusKeeper): Paper {
   // viewerLayer
   const viewerLayer = new ViewerLayer(
     page.frameTree, 
-    (layout)=>{
-      console.log(layout);
-    }, focusKeeper)
+    page.bubbles,
+    (target: Layout | Bubble | null)=>{
+      console.log(target);
+    }, 
+    focusKeeper)
   paper.addLayer(viewerLayer);
 
   // frame
