@@ -34,6 +34,12 @@ export class Renderer {
   getScale() {
     return this.layeredCanvas.viewport.scale;
   }
+
+  resetFontCache() {
+    for (const paper of this.arrayLayer.array.papers) {
+      paper.paper?.findLayer(PaperRendererLayer)?.resetCache();
+    }
+  }
 }
 
 export function buildRenderer(canvas: HTMLCanvasElement, book: Book, startIndex: number = 0, length: number = -1): Renderer {
@@ -42,7 +48,7 @@ export function buildRenderer(canvas: HTMLCanvasElement, book: Book, startIndex:
   const focusKeeper = new FocusKeeper();
   const layeredCanvas = new LayeredCanvas(viewport, true);
 
-  const floorLayer = new FloorLayer(layeredCanvas.viewport, () => {}, focusKeeper);
+  const floorLayer = new FloorLayer(layeredCanvas.viewport, () => {}, () => {}, focusKeeper);
   layeredCanvas.rootPaper.addLayer(floorLayer);
 
   let papers: Paper[] = [];
@@ -60,6 +66,7 @@ export function buildRenderer(canvas: HTMLCanvasElement, book: Book, startIndex:
   const marks: boolean[] = [];
   const arrayLayer = new ArrayLayer(
     papers, marks, fold, gapX, gapY, direction,
+    () => {},
     () => {},
     () => {},
     () => {},
