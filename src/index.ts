@@ -148,6 +148,7 @@ export const localFonts: { [key: string]: string } = {
   '源暎ぽっぷる': 'GenEiPOPle-Bk',
   '源暎ラテゴ': 'GenEiLateMinN_v2',
   '源暎ラテミン': 'GenEiLateMinN_v2',
+  '源暎きわみゴ': 'GenEiKiwamiGo',
   "ふい字": 'HuiFont29',
   "まきばフォント": 'MakibaFont13',
 };
