@@ -92,6 +92,7 @@ function buildPaper(book: Book, page: Page, focusKeeper: FocusKeeper): Paper {
   const paperRendererLayer = new PaperRendererLayer(true);
   paperRendererLayer.setFrameTree(page.frameTree);
   paperRendererLayer.setBubbles(page.bubbles);
+  paperRendererLayer.setFontSizeCoefficientHolder(page);
   paper.addLayer(paperRendererLayer);
 
   // viewerLayer
