@@ -42,13 +42,17 @@ export class Renderer {
   }
 }
 
-export function buildRenderer(canvas: HTMLCanvasElement, book: Book, startIndex: number = 0, length: number = -1): Renderer {
+export type RendererOptions = {
+  backgroundColor?: string;
+};
+
+export function buildRenderer(canvas: HTMLCanvasElement, book: Book, startIndex: number = 0, length: number = -1, options?: RendererOptions): Renderer {
   console.log("Building renderer...");
   const viewport = new Viewport(canvas, () => {});
   const focusKeeper = new FocusKeeper();
   const layeredCanvas = new LayeredCanvas(viewport, true);
 
-  const floorLayer = new FloorLayer(layeredCanvas.viewport, () => {}, () => {}, focusKeeper);
+  const floorLayer = new FloorLayer(layeredCanvas.viewport, () => {}, () => {}, focusKeeper, options?.backgroundColor);
   layeredCanvas.rootPaper.addLayer(floorLayer);
 
   let papers: Paper[] = [];

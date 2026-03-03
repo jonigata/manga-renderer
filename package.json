@@ -1,6 +1,6 @@
 {
   "name": "manga-renderer",
-  "version": "1.0.42",
+  "version": "1.0.44",
   "description": "A renderer for package files output from FramePlanner",
   "files": [
     "dist"
@@ -70,6 +70,7 @@
   },
   "dependencies": {
     "jszip": "^3.10.1",
+    "manga-renderer": "^1.0.42",
     "zod": "^3.24.1"
   }
 }
