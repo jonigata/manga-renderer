@@ -8,7 +8,8 @@ import { FocusKeeper } from './lib/layeredCanvas/tools/focusKeeper';
 import { Layout } from './lib/layeredCanvas/dataModels/frameTree';
 import { Bubble } from './lib/layeredCanvas/dataModels/bubble';
 
-export { readEnvelope } from './lib/book/envelope';
+export { readEnvelope, readEnvelopeProgressive } from './lib/book/envelope';
+export type { ProgressiveEnvelope } from './lib/book/envelope';
 export { initPaperJs } from './lib/layeredCanvas/tools/draw/bubbleGraphic';
 export type { Book, Page, WrapMode, ReadingDirection };
 
@@ -43,16 +44,16 @@ export class Renderer {
 }
 
 export type RendererOptions = {
-  backgroundColor?: string;
+  backgroundColor: string;
 };
 
-export function buildRenderer(canvas: HTMLCanvasElement, book: Book, startIndex: number = 0, length: number = -1, options?: RendererOptions): Renderer {
+export function buildRenderer(canvas: HTMLCanvasElement, book: Book, startIndex: number = 0, length: number = -1, options: RendererOptions): Renderer {
   console.log("Building renderer...");
   const viewport = new Viewport(canvas, () => {});
   const focusKeeper = new FocusKeeper();
   const layeredCanvas = new LayeredCanvas(viewport, true);
 
-  const floorLayer = new FloorLayer(layeredCanvas.viewport, () => {}, () => {}, focusKeeper, options?.backgroundColor);
+  const floorLayer = new FloorLayer(layeredCanvas.viewport, () => {}, () => {}, focusKeeper, options.backgroundColor);
   layeredCanvas.rootPaper.addLayer(floorLayer);
 
   let papers: Paper[] = [];
